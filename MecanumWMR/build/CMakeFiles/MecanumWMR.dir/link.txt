@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMecanumWMR.a CMakeFiles/MecanumWMR.dir/MecanumWMR.cpp.o CMakeFiles/MecanumWMR.dir/i2c_master.cpp.o CMakeFiles/MecanumWMR.dir/MPU9250.cpp.o CMakeFiles/MecanumWMR.dir/TrajectoryGenerator.cpp.o
+/usr/bin/ranlib libMecanumWMR.a

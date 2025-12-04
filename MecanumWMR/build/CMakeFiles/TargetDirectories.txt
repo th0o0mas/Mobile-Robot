@@ -1,0 +1,4 @@
+/home/raspberrypi/MecanumWMR/build/CMakeFiles/MecanumWMR.dir
+/home/raspberrypi/MecanumWMR/build/CMakeFiles/main.dir
+/home/raspberrypi/MecanumWMR/build/CMakeFiles/edit_cache.dir
+/home/raspberrypi/MecanumWMR/build/CMakeFiles/rebuild_cache.dir
