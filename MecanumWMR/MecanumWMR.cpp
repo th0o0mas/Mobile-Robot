@@ -116,6 +116,13 @@ void MecanumWMR::pos_controller(const std::array<float, 3> p_ref, const std::arr
     float v_global[3] = {0.0}, v_local[3]={0.0};
     for (int i=0;i<3;i++) {
         error = p_ref[i] - p_est[i];
+        
+        // Wrap angular error to [-π, π] for rotation (i=2)
+        if (i == 2) {
+            while (error > M_PI) error -= 2*M_PI;
+            while (error < -M_PI) error += 2*M_PI;
+        }
+        
         derivative = (error - prev_error[i]) / SAMPLE_TIME;
         v_global[i] = v_ref[i] + ControllerParam.kp[i]*error + ControllerParam.ki[i]*sum_error[i] + ControllerParam.kd[i]*derivative;
         u = sat(v_global[i], ControllerParam.max_vel[i], ControllerParam.max_vel[i]);
