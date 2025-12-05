@@ -1,8 +1,8 @@
 import re
 
 # Input and output file paths
-input_file = r"C:\Users\thomm\.vscode\Folders\Github\Mobile-Robot\datas\records\tom_1_2.txt" #To replace with actual path
-output_file = r"C:\Users\thomm\.vscode\Folders\Github\Mobile-Robot\datas\records\tom_1_2_processed.csv" #To replace with actual path
+input_file = r"C:\Users\thomm\.vscode\Folders\Github\Mobile-Robot\datas\records\tom_1_2_7.txt" #To replace with actual path
+output_file = r"C:\Users\thomm\.vscode\Folders\Github\Mobile-Robot\datas\records\tom_1_2_7_processed.csv" #To replace with actual path
 
 # Read the input file
 with open(input_file, 'r', encoding='utf-8-sig') as f:
