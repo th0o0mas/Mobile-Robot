@@ -15,18 +15,54 @@ int main(int argc, char** argv) {
     MecanumWMR wmr;
     if (wmr.init()==false) return 1;
     wmr.setInitCond(0,0,0);
-    wmr.setPIDgain_translation(1.5, 0.25, 0.05, 0.25);
-    ControllerParameter param = wmr.getControllerParam();
+    wmr.setPIDgain_translation(0.9, 1.2, 0, 0.25);
+    
     std::array<float, 3> target_point = {0.0};
     // Ask user how many points they want to reach
     int num_points;
     std::cout << "How many target points would you like to reach? ";
     std::cin >> num_points;
+    if (num_points == -1) {
+        ControllerParameter param = wmr.getControllerParam();
+        std::cout << "Test Mode activated"  << std::endl;
+        std::cout << "Current Translation Gains: kp=" << param.kp[0] << ", ki=" << param.ki[0] 
+                  << ", kd=" << param.kd[0] << ", kb=" << param.kb[0] << std::endl;
+        std::cout << "Current Rotation Gains: kp=" << param.kp[1] << ", ki=" << param.ki[1] 
+                  << ", kd=" << param.kd[1] << ", kb=" << param.kb[1] << std::endl;
+        
+        std::cout << "\n=== Target Point " << 1 << " ===" << std::endl;
+        auto target_point = std::array<float, 3>{1.0, 0.0, 0.0};
+        std::cout << "Moving to target [x y theta]: " << target_point[0] << " " << target_point[1] << " " << target_point[2] << std::endl;
+        wmr.Point2PointMove(target_point);
+        auto p_est = wmr.getPosition();
+        std::cout << "Reached position [x y theta]: " << p_est[0] << " " << p_est[1] << " " << p_est[2] << std::endl;
+        
+        std::cout << "\n=== Target Point " << 2 << " ===" << std::endl;
+        target_point = {0.0, 0.0, 0.0};
+        std::cout << "Moving to target [x y theta]: " << target_point[0] << " " << target_point[1] << " " << target_point[2] << std::endl;
+        wmr.Point2PointMove(target_point);
+        p_est = wmr.getPosition();
+        std::cout << "Reached position [x y theta]: " << p_est[0] << " " << p_est[1] << " " << p_est[2] << std::endl;
+
+        std::cout << "\n=== Target Point " << 3 << " ===" << std::endl;
+        target_point ={2.0, 0.0, 0.0};
+        std::cout << "Moving to target [x y theta]: " << target_point[0] << " " << target_point[1] << " " << target_point[2] << std::endl;
+        wmr.Point2PointMove(target_point);
+        p_est = wmr.getPosition();
+        std::cout << "Reached position [x y theta]: " << p_est[0] << " " << p_est[1] << " " << p_est[2] << std::endl;
+        num_points = 0; // Skip the main loop
+    }
     
     // Main loop for reaching target points
     for (int i = 0; i < num_points; i++) 
     {
+        ControllerParameter param = wmr.getControllerParam();
         std::cout << "Would you like to modify PID gains? (y/n): ";
+        std::cout << "Would you like to modify PID gains? (y/n): "<< std::endl;
+        std::cout << "Current Translation Gains: kp=" << param.kp[0] << ", ki=" << param.ki[0] 
+                  << ", kd=" << param.kd[0] << ", kb=" << param.kb[0] << std::endl;
+        std::cout << "Current Rotation Gains: kp=" << param.kp[1] << ", ki=" << param.ki[1] 
+                  << ", kd=" << param.kd[1] << ", kb=" << param.kb[1] << std::endl;
         char modify_gains;
         std::cin >> modify_gains;
         if (modify_gains == 'y' || modify_gains == 'Y') 
