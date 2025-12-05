@@ -31,6 +31,7 @@ typedef struct {
 class MecanumWMR
 {
     public:
+        ControllerParameter getControllerParam(void) const { return ControllerParam; }
         MecanumWMR(): isDone(false), translation_isDone(false), rotation_isDone(false), target_angle(0.0f), angle_direction(1), init_angle(0.0f), p_est({0.0}), starting_point({0.0})
         {
             ControllerParam = ControllerParameter();
