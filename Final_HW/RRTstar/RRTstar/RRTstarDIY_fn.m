@@ -21,8 +21,8 @@ function RRTstarDIY_fn(app)
 
     mmconnection  = 300;
     minconnection = 200;
-    tolerance     = 5;
-    iter          = 600;
+    tolerance     = 6;
+    iter          = 300;
 
     % ========== Optimization Parameters ==========
     solution_found = false;
@@ -37,7 +37,7 @@ function RRTstarDIY_fn(app)
     stall_count           = 0;
 
     % Post-solution speedup knobs
-    goal_bias_pre  = 0.12;   % before first solution (explore)
+    goal_bias_pre  = 0.13;   % before first solution (explore)
     goal_bias_post = 0.35;   % after first solution (exploit)
     informed_bias_post = 0.75; % once solved, prefer informed sampling heavily
     local_bias_post    = 0.20; % still allow local expansion
