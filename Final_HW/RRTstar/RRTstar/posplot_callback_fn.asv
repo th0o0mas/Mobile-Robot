@@ -1,0 +1,9 @@
+function posplot_callback_fn(obj,eventdata,app)
+    global position
+    global instant_pos
+    
+    plot(app.UIAxes_trajectory,instant_pos(1),instant_pos(2),'o','Color','r');
+    hold(app.UIAxes_trajectory,'on')
+    app.PoseEditField.Value=double(instant_pos(3));
+    
+end
