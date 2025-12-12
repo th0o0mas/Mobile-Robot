@@ -22,7 +22,7 @@ function RRTstarDIY_fn(app)
     mmconnection  = 300;
     minconnection = 200;
     tolerance     = 5;
-    iter          = 800;
+    iter          = 600;
 
     % ========== Optimization Parameters ==========
     solution_found = false;
