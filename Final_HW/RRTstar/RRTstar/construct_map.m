@@ -3,7 +3,7 @@ f = figure('Name','Map Occupation');
 a = axes('Parent',f);
 
 % Define map size
-map_size = [20, 20];  % Adjust this to your desired size
+map_size = [40, 40];  % Adjust this to your desired size
 
 % Create a blank white map image
 map_image = repmat([255], map_size(1),map_size(2));
