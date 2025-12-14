@@ -21,6 +21,7 @@ function GoRobot(app)
     t_plotpos=timer('StartDelay',0.05,'Period',0.05,'ExecutionMode','fixedRate')
     t_plotpos.StartFcn={@start_callback_fn,app};
     t_plotpos.TimerFcn={@posplot_callback_fn,app};
+    t_plotpos.ErrorFcn = {@timer_error_callback_fn};
     targetposSub=ros2subscriber(tposNode,"/position","geometry_msgs/Point",@positionCallback);
     lidarscanSub=ros2subscriber(tposNode,"/scan","sensor_msgs/LaserScan",@LaserCallback);
     app.StatusTextArea.Value="Running";
@@ -34,7 +35,6 @@ function GoRobot(app)
     tposidx=1;
     while  tposidx<=size(targetposition,1)
         %if running time exceeds limit, break the loop
-        instant_pos
          t_EndTime=toc();
          if t_EndTime>EndTime
              break;
@@ -73,4 +73,11 @@ function GoRobot(app)
     %rosshutdown()
     save('robotpath.mat',"position")
     save("scanresult.mat","scanresult")
+    t_plotpos = timer( ...
+    'Name','plotposTimer', ...
+    'StartDelay',0.05, ...
+    'Period',0.05, ...
+    'ExecutionMode','fixedRate');
 end
+
+
